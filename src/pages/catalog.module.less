@@ -1,0 +1,32 @@
+.toolbar { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.toolbar input { max-width: 360px; }
+.entries { padding: 0 20px; }
+.workflow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--border); }
+.workflow:last-child { border-bottom: 0; }
+.workflowHeading { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 6px; }
+.workflowHeading a { color: var(--text); font-size: 15px; font-weight: 600; }
+.workflowHeading a:hover { color: var(--accent); }
+.id { font-size: 11px; color: var(--secondary); }
+.description { font-size: 13px; color: var(--secondary); max-width: 700px; margin-bottom: 8px; }
+.meta { display: flex; flex-wrap: wrap; gap: 12px; color: var(--secondary); font-size: 12px; }
+.structure { display: flex; flex-direction: column; gap: 24px; padding: 24px; }
+.stage { display: grid; grid-template-columns: minmax(100px, 160px) 1fr; gap: 20px; }
+.stageName { font-size: 13px; font-weight: 600; }
+.jobs { display: flex; flex-wrap: wrap; gap: 12px; }
+.job { padding: 12px 16px; border: 1px solid var(--border); border-radius: var(--radius); min-width: 140px; }
+.source { padding: 20px; background: var(--inset); max-height: 65dvh; overflow: auto; }
+.back { display: inline-flex; align-items: center; gap: 8px; color: var(--secondary); font-size: 12px; margin-bottom: 20px; }
+.repository { padding: 20px 0; border-bottom: 1px solid var(--border); }
+.repository:last-child { border-bottom: 0; }
+.repository h2 { margin-bottom: 12px; }
+.repositoryMetadata { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+.systemSummary { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-bottom: 24px; }
+.systemLayout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 24px; }
+.systemPanel { padding: 20px 24px; }
+.systemPanel h2 { margin-bottom: 24px; }
+.systemRow { padding: 16px 0; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 12px; }
+.systemRow:last-child { border-bottom: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.diagnostic { padding: 12px 0; border-bottom: 1px solid var(--border); font-size: 12px; }
+.diagnostic code { color: var(--secondary); font-size: 11px; }
+@media (max-width: 760px) { .workflow { gap: 12px; } .entries { padding: 0 16px; } .systemLayout { grid-template-columns: 1fr; } .repositoryMetadata { grid-template-columns: 1fr; gap: 12px; } .stage { grid-template-columns: 1fr; gap: 12px; } .structure { padding: 16px; } .systemPanel { padding: 16px; } }

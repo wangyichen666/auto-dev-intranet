@@ -1,0 +1,22 @@
+.shell { min-height: 100dvh; padding-left: 208px; }
+.sidebar { position: fixed; inset: 0 auto 0 0; width: 208px; display: flex; flex-direction: column; background: var(--panel); border-right: 1px solid var(--border); z-index: 20; }
+.brand { display: flex; gap: var(--space-3); align-items: center; padding: 28px 22px 26px; }
+.brandMark { display: grid; place-items: center; width: 32px; height: 32px; background: var(--text); color: var(--inverse); border-radius: 6px; }
+.brandName { font-size: 18px; font-weight: 650; letter-spacing: -0.3px; }
+.subtitle { font-size: 10px; color: var(--muted); }
+.navigation { display: grid; gap: 4px; padding: 0 12px; }
+.navLink { display: flex; gap: 12px; align-items: center; min-height: 42px; border-radius: var(--radius); padding: 10px 14px; color: var(--secondary); font-size: 13px; }
+.navLink svg { width: 17px; height: 17px; }
+.navLink:hover { color: var(--text); background: var(--inset); }
+.active { background: var(--selected); color: var(--accent); font-weight: 600; }
+.bottom { margin-top: auto; padding: 20px 22px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--border); }
+.topbar { height: 60px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 32px; background: var(--panel); border-bottom: 1px solid var(--border); }
+.context { display: flex; align-items: center; gap: 12px; color: var(--secondary); font-size: 12px; }
+.contextDivider { height: 14px; border-left: 1px solid var(--border-strong); }
+.tools { display: flex; align-items: center; gap: 12px; }
+.mobileMenu { display: none; }
+.connection { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--secondary); }
+.indicator { width: 6px; height: 6px; background: var(--success); border-radius: 50%; }
+.offline { background: var(--warning); }
+@media (max-width: 1024px) { .shell { padding-left: 176px; } .sidebar { width: 176px; } .topbar { padding: 0 20px; } .brand { padding: 24px 16px; gap: 8px; } .navLink { padding: 10px; } }
+@media (max-width: 760px) { .shell { padding-left: 0; } .sidebar { display: none; } .topbar { height: 56px; padding: 0 16px; } .mobileMenu { display: inline-flex; } .contextDivider, .workspace { display: none; } .tools { gap: 4px; } .connection { display: none; } }

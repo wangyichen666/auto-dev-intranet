@@ -1,0 +1,25 @@
+.page { padding: var(--space-6) var(--space-8); min-width: 0; }
+.header { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--space-4); margin-bottom: var(--space-6); }
+.description { margin-top: var(--space-2); color: var(--secondary); font-size: 13px; }
+.commands { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: var(--space-2); }
+.updated { font-size: 12px; color: var(--muted); margin-right: var(--space-2); }
+.panel { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); min-width: 0; }
+.status { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; font-size: 12px; line-height: 22px; padding: 0 8px; border-radius: 4px; }
+.dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.neutral { color: var(--neutral); background: var(--neutral-bg); }
+.neutralStrong { color: var(--neutral-strong); background: var(--neutral-strong-bg); }
+.info { color: var(--info); background: var(--info-bg); }
+.success { color: var(--success); background: var(--success-bg); }
+.warning { color: var(--warning); background: var(--warning-bg); }
+.danger { color: var(--danger); background: var(--danger-bg); }
+.state { min-height: 280px; padding: var(--space-8); display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; gap: var(--space-3); }
+.stateIcon { display: flex; padding: var(--space-4); background: var(--inset); color: var(--secondary); border-radius: var(--radius); font-size: 24px; }
+.state p { max-width: 460px; color: var(--secondary); }
+.error { margin-bottom: var(--space-4); }
+.errorDetails { display: grid; gap: var(--space-2); font-size: 12px; }
+.modalHint { color: var(--secondary); font-size: 13px; margin-bottom: var(--space-5); }
+.metadata { display: grid; grid-template-columns: minmax(90px, 1fr) minmax(0, 2fr); gap: 10px 16px; margin: 0; font-size: 12px; }
+.metadata dt { color: var(--secondary); }
+.metadata dd { margin: 0; overflow-wrap: anywhere; }
+@media (max-width: 1024px) { .page { padding: var(--space-5); } .updated { display: none; } }
+@media (max-width: 640px) { .page { padding: var(--space-4); } .header { flex-direction: column; gap: var(--space-3); margin-bottom: var(--space-5); } .commands { width: 100%; justify-content: flex-start; } .state { min-height: 260px; padding: var(--space-5); } }

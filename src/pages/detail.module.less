@@ -1,0 +1,45 @@
+.back { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; margin-bottom: 16px; color: var(--secondary); }
+.titleLine { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.identity { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 12px; color: var(--secondary); font-size: 12px; }
+.context { display: flex; flex-wrap: wrap; gap: 12px 24px; padding: 14px 20px; background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 20px; font-size: 12px; }
+.context span { overflow-wrap: anywhere; min-width: 0; }
+.context label { color: var(--secondary); margin-right: 8px; }
+.workspace { display: grid; grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr); gap: 20px; height: max(440px, calc(100dvh - 288px)); }
+.executionPanel { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+.panelTitle { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.process { display: grid; grid-template-columns: minmax(180px, 36%) minmax(0, 1fr); min-height: 0; flex: 1; }
+.rail { overflow: auto; padding: 20px 16px; border-right: 1px solid var(--border); }
+.stage { margin-bottom: 24px; }
+.stageHeading { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; font-size: 12px; }
+.stageNumber { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 4px; background: var(--inset); color: var(--secondary); font-family: monospace; font-size: 11px; }
+.job { border-left: 1px solid var(--border-strong); margin-left: 10px; padding-left: 14px; }
+.jobHeading { font-size: 12px; margin: 8px 0; overflow-wrap: anywhere; }
+.attemptButton { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; width: 100%; border: 1px solid transparent; border-radius: var(--radius); background: transparent; color: var(--text); padding: 10px; text-align: left; }
+.attemptButton:hover { background: var(--inset); }
+.selected { background: var(--selected); border-color: var(--accent); }
+.attemptText { font-size: 11px; color: var(--secondary); }
+.inspect { padding: 20px; overflow: auto; min-width: 0; }
+.inspectHeader { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 18px; }
+.logLabel { margin: 24px 0 8px; font-size: 12px; font-weight: 600; }
+.log { padding: 12px; background: var(--inset); border: 1px solid var(--border); border-radius: var(--radius); max-height: 260px; overflow: auto; }
+.side { overflow: auto; min-height: 0; padding: 0 20px 20px; }
+.sideHeading { font-size: 12px; font-weight: 600; color: var(--secondary); margin: 8px 0 12px; }
+.artifact { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.artifactName { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; overflow-wrap: anywhere; }
+.artifactName svg { color: var(--secondary); flex-shrink: 0; }
+.artifactActions { margin-top: 12px; display: flex; gap: 8px; }
+.section { padding: 16px 0; border-bottom: 1px solid var(--border); }
+.section h3 { margin-bottom: 12px; }
+.event { position: relative; border-left: 1px solid var(--border); padding: 0 0 20px 16px; font-size: 12px; }
+.event::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--border-strong); position: absolute; left: -4px; top: 7px; }
+.eventType { font-weight: 550; overflow-wrap: anywhere; }
+.eventDate { color: var(--secondary); font-size: 11px; }
+.mobileTabs { display: none; }
+.markdown { overflow-wrap: anywhere; max-height: 60dvh; overflow: auto; }
+.markdown h1 { font-size: 22px; margin: 16px 0; }
+.markdown h2 { margin: 12px 0; }
+.markdown p { margin: 8px 0; }
+.markdown pre { background: var(--inset); padding: 12px; }
+.markdown img { max-width: 100%; }
+@media (max-width: 1100px) { .workspace { display: none; } .mobileTabs { display: block; } .executionPanel { overflow: auto; } .inspect { overflow: visible; } }
+@media (max-width: 760px) { .context { padding: 14px; gap: 8px 16px; } .process { display: block; } .rail { border-right: 0; border-bottom: 1px solid var(--border); } .inspect { padding: 16px; } .side { padding: 0 16px 16px; } .context .long { width: 100%; } }

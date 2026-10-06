@@ -1,0 +1,31 @@
+name: 内网控制台检查
+on: [push, pull_request]
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m venv .venv312
+      - run: .venv312/bin/pip install -e 'server[dev]'
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test -- --runInBand
+      - run: npm run api:types && git diff --exit-code -- config/openapi.json src/typings/generated.ts
+      - run: npm run build
+      - run: cd server && ../.venv312/bin/python -m pytest -q && ../.venv312/bin/python -m compileall -q src tests
+      - run: .venv312/bin/ruff check server/src server/tests && .venv312/bin/ruff format --check server/src server/tests
+      - run: npx playwright install --with-deps chrome
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 浏览器验收截图
+          path: test-results

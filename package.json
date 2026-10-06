@@ -1,0 +1,45 @@
+{
+  "name": "auto-dev-intranet",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "lint": "eslint src test e2e config",
+    "typecheck": "tsc --noEmit",
+    "test": "node config/test.mjs",
+    "test:e2e": "playwright test",
+    "api:types": "node config/api-types.mjs"
+  },
+  "dependencies": {
+    "@sofa-design/icons": "1.7.1",
+    "@tanstack/react-query": "5.81.5",
+    "antd": "5.26.3",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "react-markdown": "10.1.0",
+    "react-router-dom": "7.18.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.30.1",
+    "@playwright/test": "1.63.0",
+    "@testing-library/jest-dom": "6.6.3",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "14.6.1",
+    "@types/node": "22.15.30",
+    "@types/react": "18.3.23",
+    "@types/react-dom": "18.3.7",
+    "@vitejs/plugin-react": "4.5.2",
+    "eslint": "9.30.1",
+    "globals": "16.3.0",
+    "jsdom": "26.1.0",
+    "less": "4.3.0",
+    "openapi-typescript": "7.8.0",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.71.1",
+    "vite": "6.4.4",
+    "vitest": "4.1.11"
+  }
+}
