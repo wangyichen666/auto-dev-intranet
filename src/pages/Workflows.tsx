@@ -6,7 +6,8 @@ import { Link, useParams } from 'react-router-dom';
 import { useLocale } from '../locales';
 import { useApi } from '../services/api';
 import { dateTime } from '../services/time';
-import { BusinessModal, EmptyState, ErrorNotice, ErrorState, IconButton, LoadingState, PageHeader, PageLayout, PagePanel, TextIconButton } from '../components/common';
+import { EmptyState, ErrorNotice, ErrorState, IconButton, LoadingState, PageHeader, PageLayout, PagePanel, TextIconButton } from '../components/common';
+import { BusinessModal } from '../components/modals';
 import type { Graph } from '../typings/api';
 import styles from './catalog.module.less';
 export function WorkflowStructure({ graph }: { graph: Graph }) { const { t } = useLocale(); return <div className={styles.structure}>{graph.stages.map((s, index) => <section className={styles.stage} key={s.name}><h3 className={styles.stageName}><span className="muted mono">{String(index + 1).padStart(2, '0')} / </span>{s.name}</h3><div className={styles.jobs}>{s.jobs.map(j => <div className={styles.job} key={j.name}><strong>{j.name}</strong><p className="muted mono">{j.type === 'agent' ? j.agent : j.tool}</p>{j.model && <p className="muted">{j.model}</p>}</div>)}</div></section>)}{!graph.stages.length && <EmptyState title="noGraph"/>}<span className="muted">{graph.stages.length} {t('stages')} · {graph.stages.reduce((sum, s) => sum + s.jobs.length, 0)} {t('jobs')}</span></div>; }

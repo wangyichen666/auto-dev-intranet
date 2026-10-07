@@ -1,4 +1,5 @@
 export const zhCN = {
+  executionFinished: '执行已结束', outputLimitHint: '仅展示上游保存的输出摘要，每路最多 2048 字符。完整任务结果请查看产物。', rawOutput: '原始输出摘要', sessionPreparing: '会话准备', sessionHookResult: '准备事件返回', sessionStarted: '会话初始化', modelReply: '模型回复', toolInvocation: '工具调用', modelResult: '模型结果', noReadableReply: '当前摘要未包含模型文字回复，可查看产物或原始记录。', incompleteOutput: '部分记录未能完整解析，内容已保留在原始摘要中。',
   product: 'Auto Dev', subtitle: '研发任务控制台', workspace: '内网工作区', tasks: '任务中心', workflows: '工作流模板', repositories: '仓库配置', system: '系统状态',
   all: '全部', QUEUED: '排队中', RUNNING: '运行中', WAITING: '等待中', PAUSED: '已暂停', SUCCEEDED: '已完成', FAILED: '失败', CANCELLED: '已取消', BLOCKED: '已阻塞', SKIPPED: '已跳过',
   taskDescription: '创建、监控与控制研发任务', refresh: '刷新', createTask: '新建任务', updated: '最后更新', searchTasks: '搜索任务标题、运行 ID 或工作流',

@@ -7,7 +7,8 @@ import type { Artifact } from '../typings/api';
 import { useLocale } from '../locales';
 import { useApi } from '../services/api';
 import { dateTime, size } from '../services/time';
-import { BusinessModal, EmptyState, ErrorNotice, LoadingState, Metadata, TextIconButton } from './common';
+import { EmptyState, ErrorNotice, LoadingState, Metadata, TextIconButton } from './common';
+import { BusinessModal } from './modals';
 import styles from '../pages/detail.module.less';
 export function ArtifactPreview({ runId, artifact, onClose }: { runId: string; artifact: Artifact; onClose: () => void }) {
   const api = useApi(); const { t } = useLocale();

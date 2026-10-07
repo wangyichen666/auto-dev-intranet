@@ -1,7 +1,7 @@
 import { lazy, Suspense, useState } from 'react';
-import { App as AntApp, ConfigProvider } from 'antd';
-import zhCN from 'antd/locale/zh_CN';
-import enUS from 'antd/locale/en_US';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
+import enUS from 'antd/es/locale/en_US';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Link, Navigate, Route, Routes } from 'react-router-dom';
 import { Shell } from './layouts/Shell';
@@ -20,6 +20,6 @@ export const queryClient = new QueryClient({ defaultOptions: { queries: { staleT
 function Application() {
   const { locale, t } = useLocale(); const [token, setToken] = useState('');
   const disconnect = () => { void queryClient.cancelQueries(); queryClient.clear(); setToken(''); };
-  return <ConfigProvider button={{ autoInsertSpace: false }} locale={locale === 'zh-CN' ? zhCN : enUS} theme={theme()}><AntApp>{token ? <ApiProvider token={token}><BrowserRouter><Suspense fallback={<LoadingState/>}><Routes><Route element={<Shell onDisconnect={disconnect}/> }><Route index element={<Navigate to="/tasks" replace/>}/><Route path="/tasks" element={<Tasks/>}/><Route path="/tasks/:runId" element={<TaskDetail/>}/><Route path="/workflows" element={<Workflows/>}/><Route path="/workflows/:templateId" element={<WorkflowDetailPage/>}/><Route path="/repositories" element={<Repositories/>}/><Route path="/system" element={<System/>}/><Route path="*" element={<EmptyState title="notFound" action={<Link to="/tasks">{t('home')}</Link>}/>}/></Route></Routes></Suspense></BrowserRouter></ApiProvider> : <Access onConnect={setToken}/>}</AntApp></ConfigProvider>;
+  return <ConfigProvider button={{ autoInsertSpace: false }} locale={locale === 'zh-CN' ? zhCN : enUS} theme={theme()}>{token ? <ApiProvider token={token}><BrowserRouter><Suspense fallback={<LoadingState/>}><Routes><Route element={<Shell onDisconnect={disconnect}/> }><Route index element={<Navigate to="/tasks" replace/>}/><Route path="/tasks" element={<Tasks/>}/><Route path="/tasks/:runId" element={<TaskDetail/>}/><Route path="/workflows" element={<Workflows/>}/><Route path="/workflows/:templateId" element={<WorkflowDetailPage/>}/><Route path="/repositories" element={<Repositories/>}/><Route path="/system" element={<System/>}/><Route path="*" element={<EmptyState title="notFound" action={<Link to="/tasks">{t('home')}</Link>}/>}/></Route></Routes></Suspense></BrowserRouter></ApiProvider> : <Access onConnect={setToken}/>}</ConfigProvider>;
 }
 export default function App() { return <LocaleProvider><QueryClientProvider client={queryClient}><Application/></QueryClientProvider></LocaleProvider>; }

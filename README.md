@@ -61,7 +61,7 @@ set +a
 | 路由 | 已实现 |
 | --- | --- |
 | `/tasks` | 状态/搜索/URL 分页、真实运行列表、活动轮询、快捷暂停、新建任务、空/筛选空/错误/不可用 |
-| `/tasks/:runId` | 冻结 stage/job、全部 attempts、持久化输出摘要、allowedActions 控制、恢复模式与反馈、事件、产物、安全预览与下载 |
+| `/tasks/:runId` | 冻结 stage/job、全部 attempts、Claude 可读输出与原始摘要、allowedActions 控制、恢复模式与反馈、事件、产物、安全预览与下载 |
 | `/workflows` | 配置目录直属模板、搜索、刷新、粘贴/上传严格校验 |
 | `/workflows/:templateId` | 只读 YAML 与结构概览 |
 | `/repositories` | 安全字段与能力配置，只读 |
@@ -85,7 +85,7 @@ cd server
 ../.venv312/bin/ruff format --check src tests
 ```
 
-`--runInBand` 由脚本转换为 Vitest 单次运行参数，不传入不支持的 CLI 选项。生成类型无需启动服务器或连接上游。
+`--runInBand` 由脚本转换为 Vitest 的 `--no-file-parallelism --maxWorkers=1`，测试文件串行运行，保留默认超时。生成类型无需启动服务器或连接上游。
 
 ```bash
 npm run test:e2e
@@ -93,7 +93,7 @@ npm run test:e2e
 
 E2E 启动 `tests.e2e_app:app` 的确定性 fake 和 Vite，使用测试专用 token；不调用真实 agent、不访问用户仓库。测试使用专用端口 18000 / 15173，不复用开发服务。默认复用本机 Chrome，不自动安装浏览器；CI 按显式测试需求安装 Chrome。如本机无 Chrome，可先安装或在 Playwright 配置中切换已安装的 Chromium。
 
-完整验收范围与记录见 [docs/verification.md](docs/verification.md)。
+完整验收范围与记录见 [docs/verification.md](docs/verification.md)。本轮输出阅读、入口体积和 CI 修复见 [迭代记录](docs/iteration-2026-10-07.md)。
 
 后续按用户明确授权完成本机 Claude Code 的真实浏览器闭环，记录见 [docs/live-claude-e2e.md](docs/live-claude-e2e.md)。真实模型用量不纳入默认测试或 CI；本机初始化事件上报的模型为 `deepseek-v4-flash`。
 

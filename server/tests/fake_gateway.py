@@ -2,6 +2,7 @@
 
 import copy
 import hashlib
+import json
 
 from auto_dev_intranet.errors import APIError, not_found
 from auto_dev_intranet.schemas import (
@@ -37,7 +38,7 @@ jobs:
 """
 GRAPH = {
     "stages": [
-        {"name": "write", "jobs": [{"name": "document", "type": "agent", "agent": "codex-cli"}]},
+        {"name": "write", "jobs": [{"name": "document", "type": "agent", "agent": "default"}]},
         {"name": "verify", "jobs": [{"name": "verify", "type": "tool", "tool": "file.copy"}]},
     ],
     "loops": [],
@@ -72,7 +73,7 @@ class FakeGateway:
                     stage="write",
                     number=1,
                     status="RUNNING",
-                    engine="codex-cli",
+                    engine="claude-cli",
                     model="test-model",
                     hasSession=True,
                     startedAt=STAMP,
@@ -89,7 +90,7 @@ class FakeGateway:
             databaseReachable=True,
             stateReachable=True,
             daemon="RUNNING",
-            agents=["codex-cli"],
+            agents=["default", "claude-cli", "codex-cli"],
             tools=["file.copy"],
             diagnostics=[{"code": "TEST_ONLY", "message": "当前为确定性测试 Gateway"}],
         )
@@ -130,8 +131,8 @@ class FakeGateway:
         r.run.status = Status.SUCCEEDED
         r.run.startedAt = STAMP
         r.run.finishedAt = STAMP
-        r.run.currentStage = "verify"
-        r.run.currentJob = "verify"
+        r.run.currentStage = None
+        r.run.currentJob = "__complete"
         r.allowedActions = r.run.allowedActions = []
         r.attempts = [
             Attempt(
@@ -140,11 +141,21 @@ class FakeGateway:
                 stage="write",
                 number=1,
                 status="SUCCEEDED",
-                engine="codex-cli",
+                engine="claude-cli",
                 startedAt=STAMP,
                 finishedAt=STAMP,
                 artifactIds=["artifact-1"],
-                stdout="测试产物已保存",
+                stdout="\n".join(
+                    json.dumps(event, ensure_ascii=False)
+                    for event in [
+                        {"type": "system", "subtype": "init", "model": "test-model"},
+                        {
+                            "type": "assistant",
+                            "message": {"content": [{"type": "text", "text": "测试产物已保存"}]},
+                        },
+                        {"type": "result", "result": "文档已生成"},
+                    ]
+                ),
             ),
             Attempt(
                 attemptId="attempt-2",
@@ -155,6 +166,14 @@ class FakeGateway:
                 startedAt=STAMP,
                 finishedAt=STAMP,
                 stdout="测试中的文档校验节点已完成",
+            ),
+            Attempt(
+                attemptId="attempt-3",
+                job="__complete",
+                number=3,
+                status="SUCCEEDED",
+                startedAt=STAMP,
+                finishedAt=STAMP,
             ),
         ]
         r.artifacts = [
@@ -262,7 +281,9 @@ class FakeGateway:
         if len(source.encode()) > 1048576:
             raise APIError(413, "WORKFLOW_TOO_LARGE", "YAML 超过 1 MiB")
         try:
-            d = parse_workflow(source, agents={"default", "codex-cli"}, tools={"file.copy"})
+            d = parse_workflow(
+                source, agents={"default", "claude-cli", "codex-cli"}, tools={"file.copy"}
+            )
             return WorkflowValidation(valid=True, name=d.name, version=d.version, graph=graph(d))
         except ConfigurationError as exc:
             return WorkflowValidation(

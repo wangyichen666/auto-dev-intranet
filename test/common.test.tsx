@@ -4,7 +4,7 @@ import { LocaleProvider } from '../src/locales';
 import { enUS } from '../src/locales/en-US';
 import { zhCN } from '../src/locales/zh-CN';
 import { duration } from '../src/services/time';
-import { defaultAttempt } from '../src/pages/TaskDetail';
+import { defaultAttempt } from '../src/services/run';
 import type { RunDetail, Attempt } from '../src/typings/api';
 import { describe, it, expect } from 'vitest';
 describe('共享状态与事实字段', () => {

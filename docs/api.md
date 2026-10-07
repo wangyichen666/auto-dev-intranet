@@ -46,7 +46,7 @@ RunDetail 包含 run、issueSummary、workflowGraph、stageExecutions、attempts
 
 ## 内容上限
 
-JSON 请求最大 1 MiB + 64 KiB；解码后的 YAML UTF-8 最大 1 MiB。模板文件最大 1 MiB、仅直属 YAML 文件。产物文本预览最大 256 KiB，下载最大 20 MiB。日志从持久化 execution facts 读取，每个 stdout/stderr 最多 2048 字符。内容不伪装流式输出。二进制仅下载；文本输出统一脱敏。
+JSON 请求最大 1 MiB + 64 KiB；解码后的 YAML UTF-8 最大 1 MiB。模板文件最大 1 MiB、仅直属 YAML 文件。产物文本预览最大 256 KiB，下载最大 20 MiB。日志从持久化 execution facts 读取，每个 stdout/stderr 最多 2048 字符。前端仅对 `claude-cli` 的完整 JSON 行提取会话、文字回复、工具名称和结果；原始摘要完整保留，不从截断片段推断结果或执行状态。所有提取字段通过 React 作为文字渲染，其他引擎与未知格式保持原样。本轮未更改 HTTP DTO。内容不伪装流式输出。二进制仅下载；文本输出统一脱敏。
 
 ## 统一错误
 

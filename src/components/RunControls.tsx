@@ -7,7 +7,8 @@ import { useLocale } from '../locales';
 import { useApi } from '../services/api';
 import type { Action, RunDetail } from '../typings/api';
 import type { MessageKey } from '../locales/zh-CN';
-import { BusinessModal, DangerConfirm, ErrorNotice, TextIconButton } from './common';
+import { ErrorNotice, TextIconButton } from './common';
+import { BusinessModal, DangerConfirm } from './modals';
 const actionIcons = { pause: <Pause/>, resume: <Play/>, retry: <RefreshCcw/>, cancel: <X/>, skip: <ChevronRight/> };
 const actionLabel: Record<Action, MessageKey> = { pause: 'pause', resume: 'resume', retry: 'retry', skip: 'skip', cancel: 'cancelRun' };
 export function RunControls({ detail }: { detail: RunDetail }) {

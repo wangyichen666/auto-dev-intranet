@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import { useApi } from '../services/api';
 import { useLocale } from '../locales';
 import type { CreateCommand } from '../typings/api';
-import { BusinessModal, ErrorNotice } from './common';
+import { ErrorNotice } from './common';
+import { BusinessModal } from './modals';
 export function CreateTask({ open, onClose }: { open: boolean; onClose: () => void }) {
   const api = useApi(); const { t } = useLocale(); const navigate = useNavigate(); const client = useQueryClient();
   const [form] = Form.useForm<CreateCommand>(); const locked = useRef(false);

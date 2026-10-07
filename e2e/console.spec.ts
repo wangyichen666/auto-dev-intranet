@@ -22,6 +22,14 @@ test('创建任务 → 状态变化 → 产物预览与下载', async ({ page },
   await expect(page).toHaveURL(/\/tasks\/test-run-/);
   await expect(page.getByRole('heading', { name: '端到端文档任务', exact: false })).toBeVisible();
   await expect(page.locator('[data-status="SUCCEEDED"]').first()).toBeVisible({ timeout: 20000 });
+  await expect(page.getByText('执行已结束').filter({ visible: true })).toBeVisible();
+  await page.getByRole('button', { name: '尝试 1 · 轮次 1 已完成', exact: true }).filter({ visible: true }).first().click();
+  await expect(page.getByText('模型回复', { exact: true }).filter({ visible: true })).toBeVisible();
+  await expect(page.getByText('测试产物已保存', { exact: true }).filter({ visible: true })).toBeVisible();
+  await page.getByText('原始输出摘要', { exact: true }).filter({ visible: true }).click();
+  await expect(page.locator('details[open] pre').filter({ visible: true })).toContainText('"type": "assistant"');
+  await page.screenshot({ animations: 'disabled', path: info.outputPath('output.png') });
+  await page.getByText('原始输出摘要', { exact: true }).filter({ visible: true }).click();
   if ((page.viewportSize()?.width ?? 1440) <= 1100) await page.getByRole('tab', { name: '产物', exact: true }).filter({ visible: true }).click();
   await page.getByRole('button', { name: '预览', exact: true }).filter({ visible: true }).click();
   await expect(page.getByRole('heading', { name: '测试报告', exact: true })).toBeVisible();
